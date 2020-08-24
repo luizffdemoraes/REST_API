@@ -18,7 +18,7 @@ exports.getProdutos = (req, res, next) => {
               request: {
                 tipo: 'Get',
                 descricao: 'Retorna os detalhes de todos os produtos',
-                url: 'http://localhost:3000/produtos/' + prod.id_produto
+                url: process.env.URL_API + 'produtos' + prod.id_produto
               }
             }
           })
@@ -53,7 +53,7 @@ exports.postProduto = (req, res, next) => {
             request: {
               tipo: 'POST',
               descricao: 'Insere um produto',
-              url: 'http://localhost:3000/produtos'
+              url: process.env.URL_API + 'produtos'
             }
           }
         }
@@ -116,7 +116,7 @@ exports.getUmProduto = (req, res, next) => {
             request: {
               tipo: 'GET',
               descricao: 'Retorna um produto',
-              url: 'http://localhost:3000/produtos'
+              url: process.env.URL_API + 'produtos'
             }
           }
         }
@@ -151,7 +151,7 @@ exports.updateProduto = (req, res, next) => {
             request: {
               tipo: 'PATCH',
               descricao: 'Retorna os detalhes de um produto alterado',
-              url: 'http://localhost:3000/produtos/' + req.body.id_produto
+              url: process.env.URL_API + 'produtos' + req.body.id_produto
             }
           }
         }
@@ -176,7 +176,7 @@ exports.deleteProduto = (req, res, next) => {
           request: {
             tipo: 'DELETE',
             descricao: 'Remove um produto',
-            url: 'http://localhost:3000/produtos',
+            url: process.env.URL_API + 'produtos',
             body: {
               nome: 'String',
               preco: 'Number'
