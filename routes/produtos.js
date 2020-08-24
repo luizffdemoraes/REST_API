@@ -34,7 +34,6 @@ const upload = multer({
 // RETORNA TODOS OS PRODUTOS
 router.get('/', ProdutosController.getProdutos);
 
-
 // INSERE UM PRODUTO
 router.post('/', login.obrigatorio, upload.single('produto_imagem'), ProdutosController.postProduto);
 

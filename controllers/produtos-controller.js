@@ -61,7 +61,7 @@ exports.postProduto = (req, res, next) => {
       }
     )
   });
-}
+};
 
 exports.getUmProduto = (req, res, next) => {
   mysql.getConnection((error, conn) => {
@@ -95,7 +95,7 @@ exports.getUmProduto = (req, res, next) => {
       }
     )
   });
-}
+};
 
 exports.updateProduto = (req, res, next) => {
   mysql.getConnection((error, conn) => {
@@ -130,7 +130,7 @@ exports.updateProduto = (req, res, next) => {
       }
     )
   });
-}
+};
 
 exports.deleteProduto = (req, res, next) => {
   mysql.getConnection((error, conn) => {
