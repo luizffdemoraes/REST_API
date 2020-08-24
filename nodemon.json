@@ -1,9 +1,9 @@
 {
     "env": {
-        "MYSQL_USER": "root",
-        "MYSQL_PASSWORD": 1234,
-        "MYSQL_DATABASE": "ecommerce",
-        "MYSQL_HOST": "localhost",
+        "MYSQL_USER": "b96155b78d6fa5",
+        "MYSQL_PASSWORD": "4e25f0e3",
+        "MYSQL_DATABASE": "heroku_fdc9c6a414f1bd8",
+        "MYSQL_HOST": "us-cdbr-east-02.cleardb.com",
         "MYSQL_PORT": 3306,
         "JWT_KEY": "segredo"
     }
