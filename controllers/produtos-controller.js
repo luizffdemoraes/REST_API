@@ -29,7 +29,7 @@ exports.getProdutos = (req, res, next) => {
   });
 };
 
-/*exports.postProduto = (req, res, next) => {
+exports.postProduto = (req, res, next) => {
   console.log(req.file);
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
@@ -61,8 +61,8 @@ exports.getProdutos = (req, res, next) => {
       }
     )
   });
-};*/
-
+};
+/*
 exports.postProduto = async (req, res, next) => {
   try {
       const query = 'INSERT INTO produtos (nome, preco, imagem_produto) VALUES (?,?,?)';
@@ -90,7 +90,7 @@ exports.postProduto = async (req, res, next) => {
   } catch (error) {
       return res.status(500).send({ error: error });
   }
-};
+};*/
 
 exports.getUmProduto = (req, res, next) => {
   mysql.getConnection((error, conn) => {
