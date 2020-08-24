@@ -29,7 +29,7 @@ exports.getProdutos = (req, res, next) => {
   });
 };
 
-exports.postProduto = (req, res, next) => {
+/*exports.postProduto = (req, res, next) => {
   console.log(req.file);
   mysql.getConnection((error, conn) => {
     if (error) { return res.status(500).send({ error: error }) }
@@ -61,6 +61,35 @@ exports.postProduto = (req, res, next) => {
       }
     )
   });
+};*/
+
+exports.postProduto = async (req, res, next) => {
+  try {
+      const query = 'INSERT INTO produtos (nome, preco, imagem_produto) VALUES (?,?,?)';
+      const result = await mysql.execute(query, [
+          req.body.nome,
+          req.body.preco,
+          req.file.path
+      ]);
+
+      const response = {
+          message: 'Produto inserido com sucesso',
+          createdProduct: {
+              productId: result.insertId,
+              name: req.body.nome,
+              price: req.body.preco,
+              productImage: req.file.path,
+              request: {
+                  type: 'GET',
+                  description: 'Retorna todos os produtos',
+                  url: process.env.URL_API + 'produtos'
+              }
+          }
+      }
+      return res.status(201).send(response);
+  } catch (error) {
+      return res.status(500).send({ error: error });
+  }
 };
 
 exports.getUmProduto = (req, res, next) => {
