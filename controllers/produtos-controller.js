@@ -41,9 +41,9 @@ exports.postProduto = async (req, res, next) => {
       message: 'Produto inserido com sucesso',
       createdProduct: {
         productId: result.insertId,
-        name: req.body.nome,
-        price: req.body.preco,
-        productImage: req.file.path,
+        nome: req.body.nome,
+        preco: req.body.preco,
+        imagem_produto: req.file.path,
         request: {
           type: 'GET',
           description: 'Retorna todos os produtos',
@@ -139,6 +139,58 @@ exports.deleteProduto = async (req, res, next) => {
       }
     }
     return res.status(202).send(response);
+  } catch (error) {
+    return res.status(500).send({ error: error });
+  }
+};
+
+
+//Imagens
+exports.postImagem = async (req, res, next) => {
+  try {
+    const query = 'INSERT INTO imagens_produtos (id_produto, caminho) VALUES (?,?)';
+    const result = await mysql.execute(query, [
+      req.params.id_produto,
+      req.file.path
+    ]);
+
+    const response = {
+      message: 'Imagem inserida com sucesso',
+      ImagemCriada: {
+        id_produto: parseInt(req.params.id_produto),
+        id_imagem: result.insertId,
+        nome: req.body.nome,
+        preco: req.body.preco,
+        imagem_produto: req.file.path,
+        request: {
+          type: 'GET',
+          description: 'Retorna todos as imagens',
+          url: process.env.URL_API + 'produtos/' + req.params.id_produto + '/imagens'
+        }
+      }
+    }
+    return res.status(201).send(response);
+  } catch (error) {
+    return res.status(500).send({ error: error });
+  }
+};
+
+exports.getImagens = async (req, res, next) => {
+  try {
+    const query = `SELECT * FROM imagens_produtos WHERE id_produto = ?;`
+    const result = await mysql.execute(query, [req.params.id_produto])
+    const response = {
+      quantidade: result.length,
+      imagens: result.map(img => {
+        return {
+          id_produto: parseInt(req.params.id_produto),
+          id_imagem: img.id_imagem,
+          caminho: process.env.URL_API + img.caminho
+        }
+      })
+    }
+    return res.status(200).send(response);
+
   } catch (error) {
     return res.status(500).send({ error: error });
   }
