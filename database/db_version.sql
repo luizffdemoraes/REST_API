@@ -51,3 +51,60 @@ IF NOT EXISTS imagens_produtos
 (id_produto) REFERENCES produtos
 (id_produto)
 );
+
+CREATE TABLE
+IF NOT EXISTS categorias
+(
+	id_categoria INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR
+(100)
+);
+
+ALTER TABLE produtos ADD id_categoria  INT NULL;
+
+INSERT INTO categorias
+  (nome)
+VALUES
+  ('Material Escolar');
+
+show tables;
+describe orders;
+describe pedidos;
+
+SELECT *
+FROM CATEGORIAS;
+
+update categorias set nome = 'Material de Construção'
+where id_categoria = 2;
+
+
+
+UPDATE produtos SET id_categoria = 1
+where id_produto = 2;
+
+
+ALTER TABLE produtos ADD CONSTRAINT fk_produtos_categoria FOREIGN KEY (id_categoria)  REFERENCES categorias(id_categoria);
+
+SELECT *
+FROM CATEGORIAS;
+
+update categorias set nome = 'Material de Construção'
+where id_categoria = 2;
+
+
+select *
+from produtos;
+select *
+from categorias;
+
+UPDATE produtos SET id_categoria = 1
+where id_produto = 2;
+
+describe produtos;
+
+ALTER TABLE produtos ADD CONSTRAINT fk_produtos_categoria FOREIGN KEY (id_categoria)  REFERENCES categorias(id_categoria);
+
+ALTER TABLE PRODUTOS modify id_categoria int not null;
+ALTER TABLE PRODUTOS ADD id_categoria int not null;
+alter table produtos drop foreign key fk_produtos_categoria; 
+
