@@ -15,7 +15,7 @@ Você pode assistir os vídeos deste curso pelo youtube criados pelo Maransatto.
 * Criando o Banco de Dados (MySQL); 
 * Conectando a API ao Banco MySQL;
 * API pública bem documentada;
-* Aplicando as alterações nos Pedidos
+* Aplicando as alterações nos Pedidos;
 * Consultando várias tabelas (INNER JOIN);
 * Upload de Imagens;
 * Cadastro de Usuário (com senha hash);
@@ -25,4 +25,4 @@ Você pode assistir os vídeos deste curso pelo youtube criados pelo Maransatto.
 * Deploy no Heroku;
 * Promise, Async/Await, Try/Catch;
 * Várias imagens do mesmo produto;
-* Criando Foreign Key e criação das Categorias;.js
+* Criando Foreign Key e criação das Categorias.js;
