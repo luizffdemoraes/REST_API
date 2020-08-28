@@ -31,7 +31,8 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
-// RETORNA TODOS OS PRODUTOS
+
+// RETORNA TODOS OS PRODUTOS OU PRODUTOS ESPECIFICOS
 router.get('/', ProdutosController.getProdutos);
 
 // INSERE UM PRODUTO

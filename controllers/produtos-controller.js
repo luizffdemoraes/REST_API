@@ -3,7 +3,21 @@ const mysql = require('../mysql');
 // Refatorado
 exports.getProdutos = async (req, res, next) => {
   try {
-    const result = await mysql.execute("SELECT * FROM produtos;")
+    
+    let nome = '';
+    if (req.query) {
+      const nome = req.query.nome;
+    }
+    const query = `
+      SELECT *
+        FROM produtos
+        WHERE id_categoria = ?
+        AND  (
+          nome LIKE '%${nome}%' 
+        );
+    `;
+    const result = await mysql.execute(query, [req.query.id_categoria])
+    
     const response = {
       quantidade: result.length,
       produtos: result.map(prod => {
@@ -28,6 +42,10 @@ exports.getProdutos = async (req, res, next) => {
 };
 
 
+
+
+
+
 exports.postProduto = async (req, res, next) => {
   try {
     const query = 'INSERT INTO produtos (nome, preco, imagem_produto, id_categoria) VALUES (?,?,?,?)';
@@ -35,7 +53,7 @@ exports.postProduto = async (req, res, next) => {
       req.body.nome,
       req.body.preco,
       req.file.path,
-      req.body.id_categoria,
+      req.body.id_categoria
     ]);
 
     const response = {

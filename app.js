@@ -5,9 +5,11 @@ const bodyParser = require('body-parser');
 
 // Rotas produtos
 const rotaProdutos = require('./routes/produtos');
+const rotaCategoria = require('./routes/categoria');
 const rotaPedidos = require('./routes/pedidos');
 const rotaUsuarios = require('./routes/usuarios');
 const rotaImagens = require('./routes/imagens');
+
 
 
 /* consumir o metodo
@@ -39,6 +41,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/produtos', rotaProdutos);
+app.use('/categorias', rotaCategoria);
 app.use('/pedidos', rotaPedidos);
 app.use('/usuarios', rotaUsuarios);
 app.use('/imagens', rotaImagens);
