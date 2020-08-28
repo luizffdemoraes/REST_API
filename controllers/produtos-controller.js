@@ -30,11 +30,12 @@ exports.getProdutos = async (req, res, next) => {
 
 exports.postProduto = async (req, res, next) => {
   try {
-    const query = 'INSERT INTO produtos (nome, preco, imagem_produto) VALUES (?,?,?)';
+    const query = 'INSERT INTO produtos (nome, preco, imagem_produto, id_categoria) VALUES (?,?,?,?)';
     const result = await mysql.execute(query, [
       req.body.nome,
       req.body.preco,
-      req.file.path
+      req.file.path,
+      req.body.id_categoria,
     ]);
 
     const response = {
@@ -44,6 +45,7 @@ exports.postProduto = async (req, res, next) => {
         nome: req.body.nome,
         preco: req.body.preco,
         imagem_produto: req.file.path,
+        id_categoria: req.body.id_categoria,
         request: {
           type: 'GET',
           description: 'Retorna todos os produtos',
