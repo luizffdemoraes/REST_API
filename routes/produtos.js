@@ -33,6 +33,8 @@ const upload = multer({
 
 
 // RETORNA TODOS OS PRODUTOS OU PRODUTOS ESPECIFICOS
+
+router.get('/', ProdutosController.getProducts);
 router.get('/', ProdutosController.getProdutos);
 
 // INSERE UM PRODUTO

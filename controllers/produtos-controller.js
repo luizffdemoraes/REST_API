@@ -1,6 +1,31 @@
 const mysql = require('../mysql');
 
 // Refatorado
+exports.getProducts = async (req, res, next) => {
+  try {
+    const result = await mysql.execute("SELECT * FROM produtos;")
+    const response = {
+      quantidade: result.length,
+      produtos: result.map(prod => {
+        return {
+          id_produto: prod.id_produto,
+          nome: prod.nome,
+          preco: prod.preco,
+          imagem_produto: prod.imagem_produto,
+          request: {
+            tipo: 'Get',
+            descricao: 'Retorna os detalhes de todos os produtos',
+            url: process.env.URL_API + 'produtos/' + prod.id_produto
+          }
+        }
+      })
+    }
+    return res.status(200).send(response);
+  } catch (error) {
+    return res.status(500).send({ error: error });
+  }
+};
+
 exports.getProdutos = async (req, res, next) => {
   try {
 
