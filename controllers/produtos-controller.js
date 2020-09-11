@@ -3,7 +3,7 @@ const mysql = require('../mysql');
 // Refatorado
 exports.getProdutos = async (req, res, next) => {
   try {
-    
+
     let nome = '';
     if (req.query) {
       const nome = req.query.nome;
@@ -17,7 +17,7 @@ exports.getProdutos = async (req, res, next) => {
         );
     `;
     const result = await mysql.execute(query, [req.query.id_categoria])
-    
+
     const response = {
       quantidade: result.length,
       produtos: result.map(prod => {
